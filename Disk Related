@@ -1,0 +1,6 @@
+
+dmesg |grep -i attached  |grep disk
+
+sudo lshw -class disk
+
+lsblk
