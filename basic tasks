@@ -1,0 +1,7 @@
+Change Machine ID when cloned. 
+
+rm -f /etc/machine-id
+rm /var/lib/dbus/machine-id
+
+dbus-uuidgen --ensure=/etc/machine-id
+dbus-uuidgen --ensure
