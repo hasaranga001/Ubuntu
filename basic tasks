@@ -1,3 +1,17 @@
+Extend disk space : 
+
+    2   df -h
+    3  lvextend -L +10G /dev/mapper/vg00-var
+    4  xfs_growfs /var
+    5   df -h
+    6  df -hP
+  
+ Extend disk in vCenter
+ /usr/lib/applmgmt/support/scripts/autogrow.sh
+
+
+
+
 Change Machine ID when cloned. 
 
 rm -f /etc/machine-id
