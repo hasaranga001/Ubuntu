@@ -1,8 +1,8 @@
 Extend disk space : 
 
     df -h
-    lvextend -L +10G /dev/mapper/vg00-var
-    xfs_growfs /var
+    lvextend -L +10G /dev/mapper/ubuntu--vg-ubuntu--lv
+    xfs_growfs /dev/mapper/ubuntu--vg-ubuntu--lv   or /dev/mapper/ubuntu--vg-ubuntu--lv
     df -h
     df -hP
   
