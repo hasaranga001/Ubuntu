@@ -16,3 +16,29 @@ rm /var/lib/dbus/machine-id
 
 dbus-uuidgen --ensure=/etc/machine-id
 dbus-uuidgen --ensure
+
+
+----------------------------------------------------------
+
+create LVM
+# mounted disk is /dev/sdb
+# vg: data
+# lv: instances
+# filesystem: XFS
+
+$ parted -s /dev/sdb mklabel gpt mkpart primary 2048s 100% set 1 lvm on
+$ pvcreate /dev/sdb1
+$ vgcreate data /dev/sdb1
+$ lvcreate -n instances -l 100%FREE data
+$ mkfs.xfs /dev/data/instances
+extend LVM
+# mounted disk is /dev/sdc
+# vg: data
+# lv: instances
+# filesystem: XFS
+
+$ parted -s /dev/sdc mklabel gpt mkpart primary 2048s 100% set 1 lvm on
+$ pvcreate /dev/sdc1
+$ vgextend data /dev/sdc1
+$ lvextend -l +100%FREE /dev/mapper/data-instances
+$ xfs_growfs /dev/mapper/data-instances
